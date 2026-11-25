@@ -1,0 +1,14 @@
+FROM tomcat:9.0-jdk17-temurin
+RUN rm -f /usr/local/tomcat/webapps/*
+COPY target/my-web-app.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+
+sudo docker build -t maven-webapp .
+sudo docker images
+sudo docker run --name webapp -p 7070:8080 maven-webapp
+
+now goto instance select the instance and go to security and securitygroups and in inbounded rules  and add rule 7070 and next in that only select my-ip and enter.
+
+now to the networking and go to the public url and copy the url and add ":7070" atlast and enter 
+the o/p will appear
